@@ -80,7 +80,7 @@ extension CourierEvent{
       case .connectionFailure(error: let error):
           return toString(topic: "Event$MqttConnectFailureEvent", data: "{\"exception\" : \(errorToString(error: error))}")
       case .connectionLost(error: let error, diffLastInbound: let diffLastInbound, diffLastOutbound: let diffLastOutbound):
-          return toString(topic: "Event$MqttConnectionLostEvent", data: "{\"exception\" : \(errorToString(error: error)), \"sessionTimeMillis\" : \(diffLastOutbound ?? 0 - (diffLastInbound ?? <#default value#>) )}")
+          return toString(topic: "Event$MqttConnectionLostEvent", data: "{\"exception\" : \(errorToString(error: error)), \"sessionTimeMillis\" : \((diffLastOutbound ?? 0) - (diffLastInbound ?? 0))}")
       case .connectionDisconnect:
           return toString(topic: "Event$MqttDisconnectCompleteEvent", data: "{}")
       case .reconnect:
