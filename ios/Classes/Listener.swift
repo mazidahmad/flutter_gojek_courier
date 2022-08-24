@@ -72,7 +72,7 @@ extension CourierEvent{
       case .connectedPacketSent:
           return toString(topic: "Event$ConnectPacketSendEvent", data: "{}")
       case .courierDisconnect(clearState: let clearState):
-          return toString(topic: "Event$CourierDisconnect", data: "{\"clearState\" ; \(clearState)}")
+          return toString(topic: "Event$CourierDisconnect", data: "{\"clearState\" : \(clearState)}")
       case .connectionAttempt:
           return toString(topic: "Event$MqttConnectAttemptEvent", data: "{}")
       case .connectionSuccess:
@@ -80,7 +80,7 @@ extension CourierEvent{
       case .connectionFailure(error: let error):
           return toString(topic: "Event$MqttConnectFailureEvent", data: "{\"exception\" : \(errorToString(error: error))}")
       case .connectionLost(error: let error, diffLastInbound: let diffLastInbound, diffLastOutbound: let diffLastOutbound):
-          return toString(topic: "Event$MqttConnectionLostEvent", data: "{\"exception\" : \(errorToString(error: error)), \"sessionTimeMillis\" : \(diffLastOutbound! - diffLastInbound!)}")
+          return toString(topic: "Event$MqttConnectionLostEvent", data: "{\"exception\" : \(errorToString(error: error)), \"sessionTimeMillis\" : \(diffLastOutbound ?? 0 - (diffLastInbound ?? <#default value#>) )}")
       case .connectionDisconnect:
           return toString(topic: "Event$MqttDisconnectCompleteEvent", data: "{}")
       case .reconnect:
