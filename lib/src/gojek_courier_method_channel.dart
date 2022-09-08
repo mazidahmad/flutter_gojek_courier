@@ -15,6 +15,9 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   StreamSubscription? _loggerStreamSubscription;
   StreamSubscription? _eventStreamSubscription;
   StreamSubscription? _authFailStreamSubscription;
+  StreamSubscription? _dataSubscription;
+
+  late Stream dataStream;
 
   Courier? _courier;
   MqttConnectOption? _mqttConnectOption;
@@ -36,6 +39,8 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
     streamEvent();
 
     streamAuthFail();
+
+    streamData();
   }
 
   @override
@@ -45,9 +50,14 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
     return version;
   }
 
+  void streamData(){
+    dataStream = receiveDataChannel.receiveBroadcastStream();
+    _dataSubscription = dataStream.listen((event) { });
+  }
+
   @override
   Stream get receiveDataStream {
-    return receiveDataChannel.receiveBroadcastStream();
+    return dataStream;
   }
 
   @override
@@ -62,6 +72,9 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
 
       if(Platform.isIOS){
         _courier?.configuration.logger?.i("Library", "Logger is not supported in Ios");
+        if(courier.configuration.client.configuration?.useInterceptor ?? false){
+          _courier?.configuration.logger?.i("Library", "interceptor is not supported in Ios");
+        }
       }
 
       await methodChannel.invokeMethod<String>('initialise', courier.toJson());
@@ -476,7 +489,7 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
 
   @override
   Future<void> sendUint8List(String topic, Uint8List msg, [QoS qoS = QoS.ZERO]) async {
-    final stringMsg = String.fromCharCodes(msg);
-    send(topic, stringMsg, qoS);
+    await methodChannel.invokeMethod<String>(
+        'sendByte', {'topic': topic, 'msg': msg, 'qos': '${qoSEnumMap[qoS]}'});
   }
 }
