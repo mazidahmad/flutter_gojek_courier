@@ -269,19 +269,6 @@ enum QoS {
   TWO,
 }
 
-extension QoSValue on QoS {
-  int get value {
-    switch (this) {
-      case QoS.ZERO:
-        return 0;
-      case QoS.ONE:
-        return 1;
-      case QoS.TWO:
-        return 2;
-    }
-  }
-}
-
 @JsonSerializable()
 class MqttSubscribeAttemptEvent extends MqttEvent {
   final Map<String, QoS?>? topics;

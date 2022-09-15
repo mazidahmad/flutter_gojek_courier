@@ -412,7 +412,7 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   @override
   Future<void> subscribe(String topic, [QoS qoS = QoS.ZERO]) async {
     await methodChannel.invokeMethod<String>(
-        'subscribe', {'topic': topic, 'qos': '${qoS.value}'});
+        'subscribe', {'topic': topic, 'qos': describeEnum(qoS)});
   }
 
   @override
@@ -428,7 +428,7 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   @override
   Future<void> send(String topic, String msg, [QoS qoS = QoS.ZERO]) async {
     await methodChannel.invokeMethod<String>(
-        'send', {'topic': topic, 'msg': msg, 'qos': '${qoS.value}'});
+        'send', {'topic': topic, 'msg': msg, 'qos': describeEnum(qoS)});
   }
 
   Stream get loggerStream {
@@ -447,6 +447,6 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   Future<void> sendUint8List(String topic, Uint8List msg,
       [QoS qoS = QoS.ZERO]) async {
     await methodChannel.invokeMethod<String>(
-        'sendByte', {'topic': topic, 'msg': msg, 'qos': '${qoS.value}'});
+        'sendByte', {'topic': topic, 'msg': msg, 'qos': describeEnum(qoS)});
   }
 }
