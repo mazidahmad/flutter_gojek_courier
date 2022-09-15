@@ -87,17 +87,23 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
         jsonEncode({
           "from": _clientIdController.text,
           "msg": msg,
-        }).toString());
+        }).toString(),
+        QoS.ONE);
   }
 
   Future<void> sendByte(String topic, String msg) async {
     message.clear();
     await gojekCourierPlugin.sendUint8List(
         "chat/testroom/$topic",
-        Uint8List.fromList(utf8.encode(jsonEncode({
-          "from": _clientIdController.text,
-          "msg": msg,
-        }).toString())));
+        Uint8List.fromList(
+          utf8.encode(
+            jsonEncode({
+              "from": _clientIdController.text,
+              "msg": msg,
+            }).toString(),
+          ),
+        ),
+        QoS.ONE);
   }
 
   Future<void> initCourier() async {
