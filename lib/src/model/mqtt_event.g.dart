@@ -329,6 +329,9 @@ Map<String, dynamic> _$ConnectPacketSendEventToJson(
 MqttSubscribeAttemptEvent _$MqttSubscribeAttemptEventFromJson(
         Map<String, dynamic> json) =>
     MqttSubscribeAttemptEvent(
+      topics: (json['topics'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, $enumDecodeNullable(_$QoSEnumMap, e)),
+      ),
       connectionInfo: json['connectionInfo'] == null
           ? null
           : ConnectionInfo.fromJson(
@@ -339,17 +342,21 @@ Map<String, dynamic> _$MqttSubscribeAttemptEventToJson(
         MqttSubscribeAttemptEvent instance) =>
     <String, dynamic>{
       'connectionInfo': instance.connectionInfo?.toJson(),
+      'topics': instance.topics?.map((k, e) => MapEntry(k, _$QoSEnumMap[e])),
     };
 
-const qoSEnumMap = {
-  QoS.ZERO: 'ZERO',
-  QoS.ONE: 'ONE',
-  QoS.TWO: 'TWO',
+const _$QoSEnumMap = {
+  QoS.ZERO: 0,
+  QoS.ONE: 1,
+  QoS.TWO: 2,
 };
 
 MqttSubscribeSuccessEvent _$MqttSubscribeSuccessEventFromJson(
         Map<String, dynamic> json) =>
     MqttSubscribeSuccessEvent(
+      topics: (json['topics'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, $enumDecodeNullable(_$QoSEnumMap, e)),
+      ),
       timeTakenMillis: json['timeTakenMillis'] as int?,
       connectionInfo: json['connectionInfo'] == null
           ? null
@@ -361,12 +368,16 @@ Map<String, dynamic> _$MqttSubscribeSuccessEventToJson(
         MqttSubscribeSuccessEvent instance) =>
     <String, dynamic>{
       'connectionInfo': instance.connectionInfo?.toJson(),
+      'topics': instance.topics?.map((k, e) => MapEntry(k, _$QoSEnumMap[e])),
       'timeTakenMillis': instance.timeTakenMillis,
     };
 
 MqttSubscribeFailureEvent _$MqttSubscribeFailureEventFromJson(
         Map<String, dynamic> json) =>
     MqttSubscribeFailureEvent(
+      topics: (json['topics'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, $enumDecodeNullable(_$QoSEnumMap, e)),
+      ),
       exception: json['exception'] == null
           ? null
           : CourierException.fromJson(
@@ -382,6 +393,7 @@ Map<String, dynamic> _$MqttSubscribeFailureEventToJson(
         MqttSubscribeFailureEvent instance) =>
     <String, dynamic>{
       'connectionInfo': instance.connectionInfo?.toJson(),
+      'topics': instance.topics?.map((k, e) => MapEntry(k, _$QoSEnumMap[e])),
       'exception': instance.exception?.toJson(),
       'timeTakenMillis': instance.timeTakenMillis,
     };
@@ -827,6 +839,7 @@ HandlerThreadNotAliveEvent _$HandlerThreadNotAliveEventFromJson(
         Map<String, dynamic> json) =>
     HandlerThreadNotAliveEvent(
       isInterrupted: json['isInterrupted'] as bool?,
+      state: $enumDecodeNullable(_$ThreadStateEnumMap, json['state']),
       connectionInfo: json['connectionInfo'] == null
           ? null
           : ConnectionInfo.fromJson(
@@ -838,7 +851,17 @@ Map<String, dynamic> _$HandlerThreadNotAliveEventToJson(
     <String, dynamic>{
       'connectionInfo': instance.connectionInfo?.toJson(),
       'isInterrupted': instance.isInterrupted,
+      'state': _$ThreadStateEnumMap[instance.state],
     };
+
+const _$ThreadStateEnumMap = {
+  ThreadState.NEW: 'NEW',
+  ThreadState.RUNNABLE: 'RUNNABLE',
+  ThreadState.BLOCKED: 'BLOCKED',
+  ThreadState.WAITING: 'WAITING',
+  ThreadState.TIMED_WAITING: 'TIMED_WAITING',
+  ThreadState.TERMINATED: 'TERMINATED',
+};
 
 AuthenticatorAttemptEvent _$AuthenticatorAttemptEventFromJson(
         Map<String, dynamic> json) =>

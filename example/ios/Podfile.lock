@@ -18,7 +18,7 @@ PODS:
     - SwiftProtobuf
   - MQTTClientGJ (0.0.5)
   - ReachabilitySwift (5.0.0)
-  - SwiftProtobuf (1.19.0)
+  - SwiftProtobuf (1.20.1)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -47,7 +47,7 @@ SPEC CHECKSUMS:
   gojek_courier: cf42bf54f80f2d48c5044925766fcb4b886e192a
   MQTTClientGJ: 8e44a1809c23f6a92a5dddd1fd7e00e3b85899ef
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SwiftProtobuf: 6ef3f0e422ef90d6605ca20b21a94f6c1324d6b3
+  SwiftProtobuf: e40a7684079620e84ba522dbaeab0cddb0ec7ffd
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

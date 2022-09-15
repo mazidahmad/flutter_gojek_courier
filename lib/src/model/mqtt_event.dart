@@ -260,23 +260,30 @@ class ConnectPacketSendEvent extends MqttEvent {
   Map<String, dynamic> toJson() => _$ConnectPacketSendEventToJson(this);
 }
 
-class QoS {
-  @JsonValue("ZERO")
-  static const ZERO = QoS._(0);
-  @JsonValue("ONE")
-  static const ONE = QoS._(1);
-  @JsonValue("TWO")
-  static const TWO = QoS._(2);
+enum QoS {
+  @JsonValue(0)
+  ZERO,
+  @JsonValue(1)
+  ONE,
+  @JsonValue(2)
+  TWO,
+}
 
-  static List<QoS> get values => [ZERO, ONE, TWO];
-
-  final int value;
-  const QoS._(this.value);
+extension QoSValue on QoS {
+  int get value {
+    switch (this) {
+      case QoS.ZERO:
+        return 0;
+      case QoS.ONE:
+        return 1;
+      case QoS.TWO:
+        return 2;
+    }
+  }
 }
 
 @JsonSerializable()
 class MqttSubscribeAttemptEvent extends MqttEvent {
-  @JsonKey(ignore: true)
   final Map<String, QoS?>? topics;
 
   MqttSubscribeAttemptEvent({this.topics, ConnectionInfo? connectionInfo})
@@ -290,7 +297,6 @@ class MqttSubscribeAttemptEvent extends MqttEvent {
 
 @JsonSerializable()
 class MqttSubscribeSuccessEvent extends MqttEvent {
-  @JsonKey(ignore: true)
   final Map<String, QoS?>? topics;
   final int? timeTakenMillis;
 
@@ -306,7 +312,6 @@ class MqttSubscribeSuccessEvent extends MqttEvent {
 
 @JsonSerializable()
 class MqttSubscribeFailureEvent extends MqttEvent {
-  @JsonKey(ignore: true)
   final Map<String, QoS?>? topics;
   final CourierException? exception;
   final int? timeTakenMillis;
@@ -678,25 +683,24 @@ class InboundInactivityEvent extends MqttEvent {
   Map<String, dynamic> toJson() => _$InboundInactivityEventToJson(this);
 }
 
-class ThreadState {
+enum ThreadState {
   @JsonValue("NEW")
-  static const NEW = "NEW";
+  NEW,
   @JsonValue("RUNNABLE")
-  static const RUNNABLE = "RUNNABLE";
+  RUNNABLE,
   @JsonValue("BLOCKED")
-  static const BLOCKED = "BLOCKED";
+  BLOCKED,
   @JsonValue("WAITING")
-  static const WAITING = "WAITING";
+  WAITING,
   @JsonValue("TIMED_WAITING")
-  static const TIMED_WAITING = "TIMED_WAITING";
+  TIMED_WAITING,
   @JsonValue("TERMINATED")
-  static const TERMINATED = "TERMINATED";
+  TERMINATED,
 }
 
 @JsonSerializable()
 class HandlerThreadNotAliveEvent extends MqttEvent {
   final bool? isInterrupted;
-  @JsonKey(ignore: true)
   final ThreadState? state;
 
   HandlerThreadNotAliveEvent(

@@ -33,7 +33,7 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
 
   final authFailChannel = const EventChannel('auth_fail_channel');
 
-  MethodChannelGojekCourier(){
+  MethodChannelGojekCourier() {
     streamLogger();
 
     streamEvent();
@@ -46,13 +46,13 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   @override
   Future<String?> getPlatformVersion() async {
     final version =
-    await methodChannel.invokeMethod<String>('getPlatformVersion');
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
-  void streamData(){
+  void streamData() {
     dataStream = receiveDataChannel.receiveBroadcastStream();
-    _dataSubscription = dataStream.listen((event) { });
+    _dataSubscription = dataStream.listen((event) {});
   }
 
   @override
@@ -70,10 +70,13 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
     if (_courier == null) {
       _courier = courier;
 
-      if(Platform.isIOS){
-        _courier?.configuration.logger?.i("Library", "Logger is not supported in Ios");
-        if(courier.configuration.client.configuration?.useInterceptor ?? false){
-          _courier?.configuration.logger?.i("Library", "interceptor is not supported in Ios");
+      if (Platform.isIOS) {
+        _courier?.configuration.logger
+            ?.i("Library", "Logger is not supported in Ios");
+        if (courier.configuration.client.configuration?.useInterceptor ??
+            false) {
+          _courier?.configuration.logger
+              ?.i("Library", "interceptor is not supported in Ios");
         }
       }
 
@@ -93,7 +96,6 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   }
 
   void streamLogger() {
-
     _loggerStreamSubscription = loggerStream.listen((event) {
       var decode = jsonDecode(event);
       var type = decode["type"];
@@ -118,14 +120,14 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
     _eventStreamSubscription = eventStream.listen((event) {
       // print("event...");
       // print(event);
-      if(Platform.isIOS){
+      if (Platform.isIOS) {
         event = (event as String).replaceAll('\\', '\\\\');
       }
       var json = jsonDecode(event);
       final topic = (json["topic"] as String).split("\$")[1];
       final data = json["data"];
 
-      if(data["connectionInfo"] is String){
+      if (data["connectionInfo"] is String) {
         data["connectionInfo"] = null;
       }
 
@@ -134,317 +136,272 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
       switch (topic) {
         case "MqttConnectAttemptEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttConnectAttemptEvent.fromJson(data));
           }
           break;
         case "MqttConnectDiscardedEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttConnectDiscardedEvent.fromJson(data));
           }
           break;
         case "MqttConnectSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttConnectSuccessEvent.fromJson(data));
           }
           break;
         case "MqttConnectFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttConnectFailureEvent.fromJson(data));
           }
           break;
         case "MqttConnectionLostEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttConnectionLostEvent.fromJson(data));
           }
           break;
         case "SocketConnectAttemptEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SocketConnectAttemptEvent.fromJson(data));
           }
           break;
         case "SocketConnectSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SocketConnectSuccessEvent.fromJson(data));
           }
           break;
         case "SocketConnectFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SocketConnectFailureEvent.fromJson(data));
           }
           break;
         case "SSLSocketAttemptEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SSLSocketAttemptEvent.fromJson(data));
           }
           break;
         case "SSLSocketSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SSLSocketSuccessEvent.fromJson(data));
           }
           break;
         case "SSLSocketFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SSLSocketFailureEvent.fromJson(data));
           }
           break;
         case "SSLHandshakeSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(SSLHandshakeSuccessEvent.fromJson(data));
           }
           break;
         case "ConnectPacketSendEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(ConnectPacketSendEvent.fromJson(data));
           }
           break;
         case "MqttSubscribeAttemptEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttSubscribeAttemptEvent.fromJson(data));
           }
           break;
         case "MqttSubscribeSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttSubscribeSuccessEvent.fromJson(data));
           }
           break;
         case "MqttSubscribeFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttSubscribeFailureEvent.fromJson(data));
           }
           break;
         case "MqttUnsubscribeAttemptEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttUnsubscribeAttemptEvent.fromJson(data));
           }
           break;
         case "MqttUnsubscribeSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttUnsubscribeSuccessEvent.fromJson(data));
           }
           break;
         case "MqttUnsubscribeFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttUnsubscribeFailureEvent.fromJson(data));
           }
           break;
         case "MqttMessageReceiveEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttMessageReceiveEvent.fromJson(data));
           }
           break;
         case "MqttMessageReceiveErrorEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttMessageReceiveErrorEvent.fromJson(data));
           }
           break;
         case "MqttMessageSendEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttMessageSendEvent.fromJson(data));
           }
           break;
         case "MqttMessageSendSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttMessageSendSuccessEvent.fromJson(data));
           }
           break;
         case "MqttMessageSendFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttMessageSendFailureEvent.fromJson(data));
           }
           break;
         case "MqttPingInitiatedEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttPingInitiatedEvent.fromJson(data));
           }
           break;
         case "MqttPingScheduledEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttPingScheduledEvent.fromJson(data));
           }
           break;
         case "MqttPingCancelledEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttPingCancelledEvent.fromJson(data));
           }
           break;
         case "MqttPingSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttPingSuccessEvent.fromJson(data));
           }
           break;
         case "MqttPingFailureEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttPingFailureEvent.fromJson(data));
           }
           break;
         case "MqttPingExceptionEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttPingExceptionEvent.fromJson(data));
           }
           break;
         case "BackgroundAlarmPingLimitReached":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(BackgroundAlarmPingLimitReached.fromJson(data));
           }
           break;
         case "OptimalKeepAliveFoundEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(OptimalKeepAliveFoundEvent.fromJson(data));
           }
           break;
         case "MqttReconnectEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttReconnectEvent.fromJson(data));
           }
           break;
         case "MqttDisconnectEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttDisconnectEvent.fromJson(data));
           }
           break;
         case "MqttDisconnectStartEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttDisconnectStartEvent.fromJson(data));
           }
           break;
         case "MqttDisconnectCompleteEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(MqttDisconnectCompleteEvent.fromJson(data));
           }
           break;
         case "OfflineMessageDiscardedEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(OfflineMessageDiscardedEvent.fromJson(data));
           }
           break;
         case "InboundInactivityEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(InboundInactivityEvent.fromJson(data));
           }
           break;
         case "HandlerThreadNotAliveEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(HandlerThreadNotAliveEvent.fromJson(data));
           }
           break;
         case "AuthenticatorAttemptEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(AuthenticatorAttemptEvent.fromJson(data));
           }
           break;
         case "AuthenticatorSuccessEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(AuthenticatorSuccessEvent.fromJson(data));
           }
           break;
         case "AuthenticatorErrorEvent":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(AuthenticatorErrorEvent.fromJson(data));
           }
           break;
 
         case "CourierDisconnect":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(CourierDisconnectEvent.fromJson(data));
           }
           break;
         case "ConnectionAvailable":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(ConnectionAvailableEvent());
           }
           break;
         case "ConnectionUnavailable":
           {
-            _courier
-                ?.configuration.client.configuration?.eventHandler?.onEvent
+            _courier?.configuration.client.configuration?.eventHandler?.onEvent
                 ?.call(ConnectionUnavailableEvent());
           }
           break;
@@ -455,7 +412,7 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   @override
   Future<void> subscribe(String topic, [QoS qoS = QoS.ZERO]) async {
     await methodChannel.invokeMethod<String>(
-        'subscribe', {'topic': topic, 'qos': '${qoSEnumMap[qoS]}'});
+        'subscribe', {'topic': topic, 'qos': '${qoS.value}'});
   }
 
   @override
@@ -469,10 +426,9 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   }
 
   @override
-  Future<void> send(String topic, String msg,
-      [QoS qoS = QoS.ZERO]) async {
+  Future<void> send(String topic, String msg, [QoS qoS = QoS.ZERO]) async {
     await methodChannel.invokeMethod<String>(
-        'send', {'topic': topic, 'msg': msg, 'qos': '${qoSEnumMap[qoS]}'});
+        'send', {'topic': topic, 'msg': msg, 'qos': '${qoS.value}'});
   }
 
   Stream get loggerStream {
@@ -488,8 +444,9 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
   }
 
   @override
-  Future<void> sendUint8List(String topic, Uint8List msg, [QoS qoS = QoS.ZERO]) async {
+  Future<void> sendUint8List(String topic, Uint8List msg,
+      [QoS qoS = QoS.ZERO]) async {
     await methodChannel.invokeMethod<String>(
-        'sendByte', {'topic': topic, 'msg': msg, 'qos': '${qoSEnumMap[qoS]}'});
+        'sendByte', {'topic': topic, 'msg': msg, 'qos': '${qoS.value}'});
   }
 }

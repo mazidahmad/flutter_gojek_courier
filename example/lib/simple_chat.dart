@@ -25,9 +25,9 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
   bool isCleanSession = true;
 
   final TextEditingController _ipAddressController =
-  TextEditingController(text: "broker.mqttdashboard.com");
+      TextEditingController(text: "broker.mqttdashboard.com");
   final TextEditingController _portController =
-  TextEditingController(text: "1883");
+      TextEditingController(text: "1883");
   final TextEditingController _clientIdController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -39,31 +39,26 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
     initPlatformState();
     _usernameController.text = "user";
     _clientIdController.text =
-    "${_usernameController.text}-${Random().nextInt(10000)}";
+        "${_usernameController.text}-${Random().nextInt(10000)}";
   }
 
   Future<void> initPlatformState() async {
-
-
     await initCourier();
-
-
   }
 
   Future<void> connect(String username) async {
     await gojekCourierPlugin.connect(
         option: MqttConnectOption(
-          isCleanSession: isCleanSession,
-          clientId: _clientIdController.text,
-          keepAlive: courier.KeepAlive(timeSeconds: int.parse(_pingInterval.text)),
-          password: _passwordController.text,
-          serverUri: ServerUri(
-              host: _ipAddressController.text,
-              port: int.parse(_portController.text),
-              scheme: "tcp"),
-          username: username,
-
-        ));
+      isCleanSession: isCleanSession,
+      clientId: _clientIdController.text,
+      keepAlive: courier.KeepAlive(timeSeconds: int.parse(_pingInterval.text)),
+      password: _passwordController.text,
+      serverUri: ServerUri(
+          host: _ipAddressController.text,
+          port: int.parse(_portController.text),
+          scheme: "tcp"),
+      username: username,
+    ));
   }
 
   Future<void> subscribeTopic(String topic) async {
@@ -74,10 +69,10 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
 
   void listen() {
     gojekCourierPlugin.receiveDataStream.listen((event) {
-      var decode = (jsonDecode(event)["data"] as List<dynamic>).map((e) {
+      var decode = (jsonDecode(event)["data"]).map((e) {
         return e as int;
       }).toList();
-      var msgString =  Utf8Decoder().convert(decode);
+      var msgString = Utf8Decoder().convert(decode);
       var msg = jsonDecode(msgString);
       chatList.add("${msg["from"]}   :   ${msg['msg']}");
       setState(() {});
@@ -111,9 +106,9 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
             configuration: CourierConfiguration(
                 logger: courier.Logger(
                     onDebug: (String tag, String msg, [String tr = ""]) {
-                      logText.add("[DEBUG]   --$tag   $msg");
-                      setState(() {});
-                    }, onError: (String tag, String msg, [String tr = ""]) {
+                  logText.add("[DEBUG]   --$tag   $msg");
+                  setState(() {});
+                }, onError: (String tag, String msg, [String tr = ""]) {
                   logText.add("[ERROR]   --$tag   $msg");
                   setState(() {});
                 }, onInfo: (String tag, String msg, [String tr = ""]) {
@@ -170,7 +165,7 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
                               SnackBar(content: Text(event.toString())));
                         }),
                         authFailureHandler:
-                        AuthFailureHandler(handleAuthFailure: () {
+                            AuthFailureHandler(handleAuthFailure: () {
                           setState(() {
                             isConnect = false;
                           });
@@ -185,129 +180,129 @@ class _SimpleChatScreenState extends State<SimpleChatScreen> {
         ),
         body: isConnect
             ? Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            isConnect && !isTopicSubscribed
-                ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    topic = value;
-                  });
-                },
-                decoration:
-                const InputDecoration(hintText: "topic"),
-              ),
-            )
-                : Container(),
-            isTopicSubscribed && isConnect
-                ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: message,
-                decoration:
-                const InputDecoration(hintText: "message"),
-              ),
-            )
-                : Container(),
-            SizedBox(
-              height: 32,
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   isConnect && !isTopicSubscribed
-                      ? ElevatedButton(
-                      onPressed: () {
-                        if (topic.isNotEmpty) {
-                          subscribeTopic(topic);
-                        }
-                      },
-                      child: const Text("Subscribe"))
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                topic = value;
+                              });
+                            },
+                            decoration:
+                                const InputDecoration(hintText: "topic"),
+                          ),
+                        )
                       : Container(),
-                  isConnect
-                      ? ElevatedButton(
-                      onPressed: () {
-                        gojekCourierPlugin.disconnect();
-                        setState(() {
-                          isConnect = false;
-                          isTopicSubscribed = false;
-                        });
-                      },
-                      child: const Text("Disconnect"))
+                  isTopicSubscribed && isConnect
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: message,
+                            decoration:
+                                const InputDecoration(hintText: "message"),
+                          ),
+                        )
                       : Container(),
-                  isTopicSubscribed
-                      ? ElevatedButton(
-                      onPressed: () {
-                        sendByte(topic, message.text);
-                      },
-                      child: const Text("Send"))
-                      : Container(),
+                  SizedBox(
+                    height: 32,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        isConnect && !isTopicSubscribed
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  if (topic.isNotEmpty) {
+                                    subscribeTopic(topic);
+                                  }
+                                },
+                                child: const Text("Subscribe"))
+                            : Container(),
+                        isConnect
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  gojekCourierPlugin.disconnect();
+                                  setState(() {
+                                    isConnect = false;
+                                    isTopicSubscribed = false;
+                                  });
+                                },
+                                child: const Text("Disconnect"))
+                            : Container(),
+                        isTopicSubscribed
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  sendByte(topic, message.text);
+                                },
+                                child: const Text("Send"))
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      "Chat:",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  Expanded(
+                      child: ListView.builder(
+                    itemCount: chatList.length,
+                    itemBuilder: (ctx, index) {
+                      return Text(chatList.reversed.toList()[index]);
+                    },
+                  )),
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      "LOG:",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  Expanded(
+                      child: ListView.separated(
+                    itemCount: logText.length,
+                    itemBuilder: (ctx, index) {
+                      return Text(logText.reversed.toList()[index]);
+                    },
+                    separatorBuilder: (ctx, index) {
+                      return const Padding(padding: EdgeInsets.all(8));
+                    },
+                  )),
                 ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "Chat:",
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            Expanded(
-                child: ListView.builder(
-                  itemCount: chatList.length,
-                  itemBuilder: (ctx, index) {
-                    return Text(chatList.reversed.toList()[index]);
-                  },
-                )),
-            const Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                "LOG:",
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            Expanded(
-                child: ListView.separated(
-                  itemCount: logText.length,
-                  itemBuilder: (ctx, index) {
-                    return Text(logText.reversed.toList()[index]);
-                  },
-                  separatorBuilder: (ctx, index) {
-                    return const Padding(padding: EdgeInsets.all(8));
-                  },
-                )),
-          ],
-        )
+              )
             : ConfigurationSection(
-          ipAddressController: _ipAddressController,
-          portController: _portController,
-          pingInterval: _pingInterval,
-          clientIdController: _clientIdController,
-          usernameController: _usernameController,
-          passwordController: _passwordController,
-          isCleanSession: isCleanSession,
-          onConnect: () async {
-            if (_usernameController.text.isNotEmpty) {
-              await connect(_usernameController.text);
-            }
-          },
-          onRandomClientId: () {
-            setState(() {
-              _clientIdController.text =
-              "${_usernameController.text}-${Random().nextInt(10000)}";
-            });
-          },
-          onDefaultConnection: () {
-            _ipAddressController.text = "broker.mqttdashboard.com";
-            _portController.text = "1883";
-          },
-          onCleanSession: (value) {
-            setState(() {
-              isCleanSession = value;
-            });
-          },
-        ));
+                ipAddressController: _ipAddressController,
+                portController: _portController,
+                pingInterval: _pingInterval,
+                clientIdController: _clientIdController,
+                usernameController: _usernameController,
+                passwordController: _passwordController,
+                isCleanSession: isCleanSession,
+                onConnect: () async {
+                  if (_usernameController.text.isNotEmpty) {
+                    await connect(_usernameController.text);
+                  }
+                },
+                onRandomClientId: () {
+                  setState(() {
+                    _clientIdController.text =
+                        "${_usernameController.text}-${Random().nextInt(10000)}";
+                  });
+                },
+                onDefaultConnection: () {
+                  _ipAddressController.text = "broker.mqttdashboard.com";
+                  _portController.text = "1883";
+                },
+                onCleanSession: (value) {
+                  setState(() {
+                    isCleanSession = value;
+                  });
+                },
+              ));
   }
 }
