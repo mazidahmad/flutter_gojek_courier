@@ -42,9 +42,9 @@ class MqttConnectOptionParam(value: Map<String, Any?>): Param<MqttConnectOptions
         value.getValue("readTimeoutSecs")?.let {
             readTimeoutSecs = it as Int
         }
-        value.getValue("version")?.let {
-            version = MqttVersionParam(it as String)
-        }
+        //value.getValue("version")?.let {
+        //    version = MqttVersionParam(it as String)
+        //}
         value.getValue("userPropertiesMap")?.let {
             userPropertiesMap = it as Map<String, String>
         }
