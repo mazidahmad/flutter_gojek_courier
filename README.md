@@ -1,4 +1,4 @@
-# gojek_courier
+# flutter_gojek_courier
 
 Gojek Courier Implementation for Flutter
 

@@ -1,5 +1,5 @@
-name: gojek_courier_example
-description: Demonstrates how to use the gojek_courier plugin.
+name: flutter_gojek_courier_example
+description: Demonstrates how to use the flutter_gojek_courier plugin.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -18,9 +18,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  gojek_courier:
+  flutter_gojek_courier:
     # When depending on this package from a real application you should use:
-    #   gojek_courier: ^x.y.z
+    #   flutter_gojek_courier: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.

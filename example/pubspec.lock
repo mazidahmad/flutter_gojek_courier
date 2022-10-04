@@ -62,6 +62,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_gojek_courier:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.3-beta.01"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -74,13 +81,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  gojek_courier:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.0.3-beta.01"
   json_annotation:
     dependency: transitive
     description:

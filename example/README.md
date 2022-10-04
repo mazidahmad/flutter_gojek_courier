@@ -1,6 +1,6 @@
-# gojek_courier_example
+# flutter_gojek_courier_example
 
-Demonstrates how to use the gojek_courier plugin.
+Demonstrates how to use the flutter_gojek_courier plugin.
 
 ## Getting Started
 
