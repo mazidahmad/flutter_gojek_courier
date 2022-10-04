@@ -1,15 +1,14 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gojek_courier/gojek_courier.dart';
-import 'package:gojek_courier/src/gojek_courier_platform_interface.dart';
-import 'package:gojek_courier/src/gojek_courier_method_channel.dart';
+import 'package:gojek_courier/flutter_gojek_courier.dart';
+import 'package:gojek_courier/src/flutter_gojek_courier_platform_interface.dart';
+import 'package:gojek_courier/src/flutter_gojek_courier_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockGojekCourierPlatform 
+class MockGojekCourierPlatform
     with MockPlatformInterfaceMixin
-    implements GojekCourierPlatform {
-
+    implements FlutterGojekCourierPlatform {
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
 
@@ -42,7 +41,8 @@ class MockGojekCourierPlatform
   }
 
   @override
-  Future<void> sendUint8List(String topic, Uint8List msg, [QoS qoS = QoS.ZERO]) {
+  Future<void> sendUint8List(String topic, Uint8List msg,
+      [QoS qoS = QoS.ZERO]) {
     // TODO: implement sendUint8List
     throw UnimplementedError();
   }
@@ -61,17 +61,18 @@ class MockGojekCourierPlatform
 }
 
 void main() {
-  final GojekCourierPlatform initialPlatform = GojekCourierPlatform.instance;
+  final FlutterGojekCourierPlatform initialPlatform =
+      FlutterGojekCourierPlatform.instance;
 
-  test('$MethodChannelGojekCourier is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelGojekCourier>());
+  test('$MethodChannelFlutterGojekCourier is the default instance', () {
+    expect(initialPlatform, isInstanceOf<MethodChannelFlutterGojekCourier>());
   });
 
   test('getPlatformVersion', () async {
-    GojekCourier gojekCourierPlugin = GojekCourier();
+    FlutterGojekCourier gojekCourierPlugin = FlutterGojekCourier();
     MockGojekCourierPlatform fakePlatform = MockGojekCourierPlatform();
-    GojekCourierPlatform.instance = fakePlatform;
-  
+    FlutterGojekCourierPlatform.instance = fakePlatform;
+
     expect(await gojekCourierPlugin.getPlatformVersion(), '42');
   });
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gojek_courier/src/gojek_courier_method_channel.dart';
+import 'package:gojek_courier/src/flutter_gojek_courier_method_channel.dart';
 
 void main() {
-  MethodChannelGojekCourier platform = MethodChannelGojekCourier();
+  MethodChannelFlutterGojekCourier platform =
+      MethodChannelFlutterGojekCourier();
   const MethodChannel channel = MethodChannel('gojek_courier');
 
   TestWidgetsFlutterBinding.ensureInitialized();

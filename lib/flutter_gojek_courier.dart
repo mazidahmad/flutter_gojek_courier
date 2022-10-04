@@ -21,67 +21,68 @@ export 'package:gojek_courier/src/model/keep_alive.dart';
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:gojek_courier/src/gojek_courier_method_channel.dart';
+import 'package:gojek_courier/src/flutter_gojek_courier_method_channel.dart';
 
-import 'gojek_courier.dart';
-import 'src/gojek_courier_platform_interface.dart';
+import 'flutter_gojek_courier.dart';
+import 'src/flutter_gojek_courier_platform_interface.dart';
 
-class GojekCourier implements GojekCourierBehaviour {
-  GojekCourierPlatform create() {
-    return MethodChannelGojekCourier();
+class FlutterGojekCourier implements FlutterGojekCourierBehaviour {
+  FlutterGojekCourierPlatform create() {
+    return MethodChannelFlutterGojekCourier();
   }
 
-  _GojekCourierManualInstance withInstance(GojekCourierPlatform instance) {
+  _GojekCourierManualInstance withInstance(
+      FlutterGojekCourierPlatform instance) {
     return _GojekCourierManualInstance(instance);
   }
 
   Future<String?> getPlatformVersion() {
-    return GojekCourierPlatform.instance.getPlatformVersion();
+    return FlutterGojekCourierPlatform.instance.getPlatformVersion();
   }
 
   @override
   Future<void> connect({required MqttConnectOption option}) {
-    return GojekCourierPlatform.instance.connect(option: option);
+    return FlutterGojekCourierPlatform.instance.connect(option: option);
   }
 
   @override
   Future<void> initialise({required Courier courier}) {
-    return GojekCourierPlatform.instance.initialise(courier: courier);
+    return FlutterGojekCourierPlatform.instance.initialise(courier: courier);
   }
 
   @override
   Stream get receiveDataStream =>
-      GojekCourierPlatform.instance.receiveDataStream;
+      FlutterGojekCourierPlatform.instance.receiveDataStream;
 
   @override
   Future<void> subscribe(String topic, [QoS qoS = QoS.ZERO]) {
-    return GojekCourierPlatform.instance.subscribe(topic, qoS);
+    return FlutterGojekCourierPlatform.instance.subscribe(topic, qoS);
   }
 
   @override
   Future<void> unsubscribe(String topic) {
-    return GojekCourierPlatform.instance.unsubscribe(topic);
+    return FlutterGojekCourierPlatform.instance.unsubscribe(topic);
   }
 
   @override
   Future<void> disconnect() {
-    return GojekCourierPlatform.instance.disconnect();
+    return FlutterGojekCourierPlatform.instance.disconnect();
   }
 
   @override
   Future<void> send(String topic, String msg, [QoS qoS = QoS.ZERO]) {
-    return GojekCourierPlatform.instance.send(topic, msg, qoS);
+    return FlutterGojekCourierPlatform.instance.send(topic, msg, qoS);
   }
 
   @override
   Future<void> sendUint8List(String topic, Uint8List msg,
       [QoS qoS = QoS.ZERO]) {
-    return GojekCourierPlatform.instance.sendUint8List(topic, msg, qoS);
+    return FlutterGojekCourierPlatform.instance.sendUint8List(topic, msg, qoS);
   }
 }
 
 class _GojekCourierManualInstance {
-  GojekCourierPlatform instance;
+  FlutterGojekCourierPlatform instance;
 
   _GojekCourierManualInstance(this.instance);
 

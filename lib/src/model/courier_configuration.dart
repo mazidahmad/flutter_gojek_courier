@@ -5,14 +5,15 @@ import 'package:json_annotation/json_annotation.dart';
 part 'courier_configuration.g.dart';
 
 @JsonSerializable()
-class CourierConfiguration{
+class CourierConfiguration {
   final MqttClient client;
   @JsonKey(ignore: true)
   final ILogger? logger;
 
   CourierConfiguration({required this.client, this.logger});
 
-  factory CourierConfiguration.fromJson(Map<String, dynamic> json) => _$CourierConfigurationFromJson(json);
+  factory CourierConfiguration.fromJson(Map<String, dynamic> json) =>
+      _$CourierConfigurationFromJson(json);
 
   Map<String, dynamic> toJson() => _$CourierConfigurationToJson(this);
 }

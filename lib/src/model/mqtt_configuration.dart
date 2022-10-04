@@ -12,7 +12,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'mqtt_configuration.g.dart';
 
 @JsonSerializable()
-class MqttConfiguration{
+class MqttConfiguration {
   final ConnectRetryTimePolicy? connectRetryTimePolicy;
   final ConnectTimeoutPolicy? connectTimeoutPolicy;
   final SubscriptionRetryPolicy? subscriptionRetryPolicy;
@@ -28,8 +28,8 @@ class MqttConfiguration{
   final bool useInterceptor;
   final ExperimentConfig? experimentConfig;
 
-  MqttConfiguration({
-      this.connectRetryTimePolicy,
+  MqttConfiguration(
+      {this.connectRetryTimePolicy,
       this.connectTimeoutPolicy,
       this.subscriptionRetryPolicy,
       this.unsubscriptionRetryPolicy,
@@ -41,7 +41,8 @@ class MqttConfiguration{
       this.useInterceptor = false,
       this.experimentConfig});
 
-  factory MqttConfiguration.fromJson(Map<String, dynamic> json) => _$MqttConfigurationFromJson(json);
+  factory MqttConfiguration.fromJson(Map<String, dynamic> json) =>
+      _$MqttConfigurationFromJson(json);
 
   Map<String, dynamic> toJson() => _$MqttConfigurationToJson(this);
 }

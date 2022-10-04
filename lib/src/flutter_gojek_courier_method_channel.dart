@@ -6,12 +6,12 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import '../gojek_courier.dart';
-import 'gojek_courier_platform_interface.dart';
+import '../flutter_gojek_courier.dart';
+import 'flutter_gojek_courier_platform_interface.dart';
 import 'model/courier.dart';
 import 'model/mqtt_connect_option.dart';
 
-class MethodChannelGojekCourier extends GojekCourierPlatform {
+class MethodChannelFlutterGojekCourier extends FlutterGojekCourierPlatform {
   StreamSubscription? _loggerStreamSubscription;
   StreamSubscription? _eventStreamSubscription;
   StreamSubscription? _authFailStreamSubscription;
@@ -33,7 +33,7 @@ class MethodChannelGojekCourier extends GojekCourierPlatform {
 
   final authFailChannel = const EventChannel('auth_fail_channel');
 
-  MethodChannelGojekCourier() {
+  MethodChannelFlutterGojekCourier() {
     streamLogger();
 
     streamEvent();

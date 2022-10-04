@@ -1,6 +1,6 @@
 name: flutter_gojek_courier
 description: Gojek Courier Implementation for Flutter
-version: 0.0.3-beta.01
+version: 0.0.4-beta.01
 homepage: https://github.com/anggaaryas/flutter_gojek_courier
 
 environment:
@@ -38,10 +38,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.anggaaryas.gojek_courier
-        pluginClass: GojekCourierPlugin
+        package: com.anggaaryas.flutter_gojek_courier
+        pluginClass: FlutterGojekCourierPlugin
       ios:
-        pluginClass: GojekCourierPlugin
+        pluginClass: FlutterGojekCourierPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

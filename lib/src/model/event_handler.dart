@@ -1,6 +1,6 @@
 import 'package:gojek_courier/src/model/mqtt_event.dart';
 
-class EventHandler{
+class EventHandler {
   Function(MqttEvent)? onEvent;
 
   EventHandler({this.onEvent});

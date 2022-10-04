@@ -3,8 +3,8 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:gojek_courier/gojek_courier.dart';
-import 'package:gojek_courier/gojek_courier.dart' as courier;
+import 'package:gojek_courier/flutter_gojek_courier.dart';
+import 'package:gojek_courier/flutter_gojek_courier.dart' as courier;
 import 'package:gojek_courier_example/configuration_section.dart';
 
 class SimpleChatScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class SimpleChatScreen extends StatefulWidget {
 }
 
 class _SimpleChatScreenState extends State<SimpleChatScreen> {
-  final gojekCourierPlugin = GojekCourier();
+  final gojekCourierPlugin = FlutterGojekCourier();
   List<String> logText = [];
   List<String> chatList = [];
   String topic = "";

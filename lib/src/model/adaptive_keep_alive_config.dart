@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'adaptive_keep_alive_config.g.dart';
 
 @JsonSerializable()
-class AdaptiveKeepAliveConfig{
+class AdaptiveKeepAliveConfig {
   final int lowerBoundMinutes;
   final int upperBoundMinutes;
   final int stepMinutes;
@@ -17,8 +17,8 @@ class AdaptiveKeepAliveConfig{
   final int incomingMessagesTTLSecs;
   final int incomingMessagesCleanupIntervalSecs;
 
-  AdaptiveKeepAliveConfig({
-      required this.lowerBoundMinutes,
+  AdaptiveKeepAliveConfig(
+      {required this.lowerBoundMinutes,
       required this.upperBoundMinutes,
       required this.stepMinutes,
       required this.optimalKeepAliveResetLimit,
@@ -29,7 +29,8 @@ class AdaptiveKeepAliveConfig{
       required this.incomingMessagesTTLSecs,
       required this.incomingMessagesCleanupIntervalSecs});
 
-  factory AdaptiveKeepAliveConfig.fromJson(Map<String, dynamic> json) => _$AdaptiveKeepAliveConfigFromJson(json);
+  factory AdaptiveKeepAliveConfig.fromJson(Map<String, dynamic> json) =>
+      _$AdaptiveKeepAliveConfigFromJson(json);
 
   Map<String, dynamic> toJson() => _$AdaptiveKeepAliveConfigToJson(this);
 }

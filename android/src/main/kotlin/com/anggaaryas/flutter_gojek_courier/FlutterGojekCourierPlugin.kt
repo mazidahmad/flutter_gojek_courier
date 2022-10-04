@@ -21,8 +21,8 @@ import timber.log.Timber
 import java.util.*
 
 
-/** GojekCourierPlugin */
-class GojekCourierPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
+/** FlutterGojekCourierPlugin */
+class FlutterGojekCourierPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private lateinit var channel: MethodChannel
 
