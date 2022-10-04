@@ -261,11 +261,11 @@ class ConnectPacketSendEvent extends MqttEvent {
 }
 
 enum QoS {
-  @JsonValue(0)
+  @JsonValue('ZERO')
   ZERO,
-  @JsonValue(1)
+  @JsonValue('ONE')
   ONE,
-  @JsonValue(2)
+  @JsonValue('TWO')
   TWO,
 }
 
