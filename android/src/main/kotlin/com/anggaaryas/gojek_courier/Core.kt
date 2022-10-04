@@ -63,6 +63,7 @@ class GojekCourierCore(val receiveSink: EventChannel.EventSink, val logger: List
     fun unsubscribe(topic: String){
         courierService.unsubscribe(topic = topic)
         streamList[topic]?.dispose()
+        streamList.remove(topic)
     }
 
     fun send(topic: String, message: String, qos: QoS){
