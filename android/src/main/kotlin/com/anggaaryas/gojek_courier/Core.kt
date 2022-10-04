@@ -101,15 +101,17 @@ class GojekCourierCore(val receiveSink: EventChannel.EventSink, val logger: List
 ​
     fun listen(topic:String){
         Timber.tag("Courier-Log").d("coba listen $topic...")
-        streamList.put(
-            topic, courierService.receive(topic).subscribe{
-                uiThreadHandler.post{
-                    receiveSink.success("{\"topic\" : \"$topic\", \"data\": ${it.contentToString()}}")
+        if(!streamList.containsKey(topic)){
+            streamList.put(
+                topic, courierService.receive(topic).subscribe{
+                    uiThreadHandler.post{
+                        receiveSink.success("{\"topic\" : \"$topic\", \"data\": ${it.contentToString()}}")
+                    }
+
+                    Timber.tag("Courier-Log").d("${it.contentToString()}")
                 }
-​
-                Timber.tag("Courier-Log").d("${it.contentToString()}")
-            }
-        )
+            )
+        }
         /*disposable.add(courierService.receive(topic).subscribe{
             uiThreadHandler.post{
                 receiveSink.success("{\"topic\" : \"$topic\", \"data\": ${it.contentToString()}}")
