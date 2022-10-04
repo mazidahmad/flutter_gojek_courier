@@ -1,4 +1,3 @@
-
 export 'package:gojek_courier/src/model/courier.dart';
 export 'package:gojek_courier/src/model/active_net_info.dart';
 export 'package:gojek_courier/src/model/adaptive_keep_alive_config.dart';
@@ -19,14 +18,22 @@ export 'package:gojek_courier/src/model/work_manager_ping_sender_config.dart';
 export 'package:gojek_courier/src/model/mqtt_connect_option.dart';
 export 'package:gojek_courier/src/model/keep_alive.dart';
 
-
 import 'dart:async';
 import 'dart:typed_data';
+
+import 'package:gojek_courier/src/gojek_courier_method_channel.dart';
 
 import 'gojek_courier.dart';
 import 'src/gojek_courier_platform_interface.dart';
 
-class GojekCourier implements GojekCourierBehaviour{
+class GojekCourier implements GojekCourierBehaviour {
+  GojekCourierPlatform create() {
+    return MethodChannelGojekCourier();
+  }
+
+  _GojekCourierManualInstance withInstance(GojekCourierPlatform instance) {
+    return _GojekCourierManualInstance(instance);
+  }
 
   Future<String?> getPlatformVersion() {
     return GojekCourierPlatform.instance.getPlatformVersion();
@@ -43,10 +50,11 @@ class GojekCourier implements GojekCourierBehaviour{
   }
 
   @override
-  Stream get receiveDataStream => GojekCourierPlatform.instance.receiveDataStream;
+  Stream get receiveDataStream =>
+      GojekCourierPlatform.instance.receiveDataStream;
 
   @override
-  Future<void> subscribe(String topic, [QoS qoS =  QoS.ZERO]) {
+  Future<void> subscribe(String topic, [QoS qoS = QoS.ZERO]) {
     return GojekCourierPlatform.instance.subscribe(topic, qoS);
   }
 
@@ -61,13 +69,63 @@ class GojekCourier implements GojekCourierBehaviour{
   }
 
   @override
-  Future<void> send(String topic, String msg, [QoS qoS =  QoS.ZERO]) {
+  Future<void> send(String topic, String msg, [QoS qoS = QoS.ZERO]) {
     return GojekCourierPlatform.instance.send(topic, msg, qoS);
   }
 
   @override
-  Future<void> sendUint8List(String topic, Uint8List msg, [QoS qoS = QoS.ZERO]) {
+  Future<void> sendUint8List(String topic, Uint8List msg,
+      [QoS qoS = QoS.ZERO]) {
     return GojekCourierPlatform.instance.sendUint8List(topic, msg, qoS);
+  }
+}
+
+class _GojekCourierManualInstance {
+  GojekCourierPlatform instance;
+
+  _GojekCourierManualInstance(this.instance);
+
+  Future<String?> getPlatformVersion() {
+    return instance.getPlatformVersion();
+  }
+
+  @override
+  Future<void> connect({required MqttConnectOption option}) {
+    return instance.connect(option: option);
+  }
+
+  @override
+  Future<void> initialise({required Courier courier}) {
+    return instance.initialise(courier: courier);
+  }
+
+  @override
+  Stream get receiveDataStream => instance.receiveDataStream;
+
+  @override
+  Future<void> subscribe(String topic, [QoS qoS = QoS.ZERO]) {
+    return instance.subscribe(topic, qoS);
+  }
+
+  @override
+  Future<void> unsubscribe(String topic) {
+    return instance.unsubscribe(topic);
+  }
+
+  @override
+  Future<void> disconnect() {
+    return instance.disconnect();
+  }
+
+  @override
+  Future<void> send(String topic, String msg, [QoS qoS = QoS.ZERO]) {
+    return instance.send(topic, msg, qoS);
+  }
+
+  @override
+  Future<void> sendUint8List(String topic, Uint8List msg,
+      [QoS qoS = QoS.ZERO]) {
+    return instance.sendUint8List(topic, msg, qoS);
   }
 }
 
