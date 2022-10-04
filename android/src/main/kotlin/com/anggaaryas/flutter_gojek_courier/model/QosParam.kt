@@ -1,4 +1,4 @@
-package com.anggaaryas.gojek_courier.model
+package com.anggaaryas.flutter_gojek_courier.model
 
 import com.gojek.courier.QoS
 

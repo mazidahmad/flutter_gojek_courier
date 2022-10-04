@@ -1,12 +1,12 @@
-package com.anggaaryas.gojek_courier
+package com.anggaaryas.flutter_gojek_courier
 
 
 import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull
-import com.anggaaryas.gojek_courier.model.CourierParam
-import com.anggaaryas.gojek_courier.model.MqttConnectOptionParam
-import com.anggaaryas.gojek_courier.model.QosParam
+import com.anggaaryas.flutter_gojek_courier.model.CourierParam
+import com.anggaaryas.flutter_gojek_courier.model.MqttConnectOptionParam
+import com.anggaaryas.flutter_gojek_courier.model.QosParam
 import com.gojek.courier.QoS
 import com.google.gson.GsonBuilder
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -46,7 +46,7 @@ class FlutterGojekCourierPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         context = flutterPluginBinding.applicationContext
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "gojek_courier")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_gojek_courier")
         channel.setMethodCallHandler(this)
 
         receiveDataStream = EventChannel(flutterPluginBinding.binaryMessenger, "receive_data_channel")

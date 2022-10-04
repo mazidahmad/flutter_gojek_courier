@@ -1,4 +1,4 @@
-import 'package:gojek_courier/src/model/adaptive_keep_alive_config.dart';
+import 'package:flutter_gojek_courier/src/model/adaptive_keep_alive_config.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'experiment_config.g.dart';

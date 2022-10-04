@@ -1,5 +1,5 @@
-import 'package:gojek_courier/src/model/logger.dart';
-import 'package:gojek_courier/src/model/mqtt_client.dart';
+import 'package:flutter_gojek_courier/src/model/logger.dart';
+import 'package:flutter_gojek_courier/src/model/mqtt_client.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'courier_configuration.g.dart';

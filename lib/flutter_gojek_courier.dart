@@ -1,27 +1,27 @@
-export 'package:gojek_courier/src/model/courier.dart';
-export 'package:gojek_courier/src/model/active_net_info.dart';
-export 'package:gojek_courier/src/model/adaptive_keep_alive_config.dart';
-export 'package:gojek_courier/src/model/auth_failure_handler.dart';
-export 'package:gojek_courier/src/model/connect_retry_time_policy.dart';
-export 'package:gojek_courier/src/model/connect_timeout_policy.dart';
-export 'package:gojek_courier/src/model/connection_info.dart';
-export 'package:gojek_courier/src/model/courier_configuration.dart';
-export 'package:gojek_courier/src/model/event_handler.dart';
-export 'package:gojek_courier/src/model/experiment_config.dart';
-export 'package:gojek_courier/src/model/logger.dart';
-export 'package:gojek_courier/src/model/mqtt_client.dart';
-export 'package:gojek_courier/src/model/mqtt_configuration.dart';
-export 'package:gojek_courier/src/model/mqtt_event.dart';
-export 'package:gojek_courier/src/model/mqtt_interceptor.dart';
-export 'package:gojek_courier/src/model/server_uri.dart';
-export 'package:gojek_courier/src/model/work_manager_ping_sender_config.dart';
-export 'package:gojek_courier/src/model/mqtt_connect_option.dart';
-export 'package:gojek_courier/src/model/keep_alive.dart';
+export 'package:flutter_gojek_courier/src/model/courier.dart';
+export 'package:flutter_gojek_courier/src/model/active_net_info.dart';
+export 'package:flutter_gojek_courier/src/model/adaptive_keep_alive_config.dart';
+export 'package:flutter_gojek_courier/src/model/auth_failure_handler.dart';
+export 'package:flutter_gojek_courier/src/model/connect_retry_time_policy.dart';
+export 'package:flutter_gojek_courier/src/model/connect_timeout_policy.dart';
+export 'package:flutter_gojek_courier/src/model/connection_info.dart';
+export 'package:flutter_gojek_courier/src/model/courier_configuration.dart';
+export 'package:flutter_gojek_courier/src/model/event_handler.dart';
+export 'package:flutter_gojek_courier/src/model/experiment_config.dart';
+export 'package:flutter_gojek_courier/src/model/logger.dart';
+export 'package:flutter_gojek_courier/src/model/mqtt_client.dart';
+export 'package:flutter_gojek_courier/src/model/mqtt_configuration.dart';
+export 'package:flutter_gojek_courier/src/model/mqtt_event.dart';
+export 'package:flutter_gojek_courier/src/model/mqtt_interceptor.dart';
+export 'package:flutter_gojek_courier/src/model/server_uri.dart';
+export 'package:flutter_gojek_courier/src/model/work_manager_ping_sender_config.dart';
+export 'package:flutter_gojek_courier/src/model/mqtt_connect_option.dart';
+export 'package:flutter_gojek_courier/src/model/keep_alive.dart';
 
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:gojek_courier/src/flutter_gojek_courier_method_channel.dart';
+import 'package:flutter_gojek_courier/src/flutter_gojek_courier_method_channel.dart';
 
 import 'flutter_gojek_courier.dart';
 import 'src/flutter_gojek_courier_platform_interface.dart';

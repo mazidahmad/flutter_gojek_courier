@@ -1,4 +1,4 @@
-package com.anggaaryas.gojek_courier
+package com.anggaaryas.flutter_gojek_courier
 
 class DefaultConstants {
 

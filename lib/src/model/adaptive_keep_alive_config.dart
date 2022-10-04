@@ -1,4 +1,4 @@
-import 'package:gojek_courier/src/model/work_manager_ping_sender_config.dart';
+import 'package:flutter_gojek_courier/src/model/work_manager_ping_sender_config.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 

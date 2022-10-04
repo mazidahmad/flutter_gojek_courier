@@ -1,3 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.anggaaryas.gojek_courier">
+<manifest
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.anggaaryas.flutter_gojek_courier"
+>
 </manifest>

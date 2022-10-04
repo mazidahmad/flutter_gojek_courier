@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gojek_courier/src/flutter_gojek_courier_method_channel.dart';
+import 'package:flutter_gojek_courier/src/flutter_gojek_courier_method_channel.dart';
 
 void main() {
   MethodChannelFlutterGojekCourier platform =

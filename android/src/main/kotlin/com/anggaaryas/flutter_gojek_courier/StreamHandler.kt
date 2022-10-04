@@ -1,4 +1,4 @@
-package com.anggaaryas.gojek_courier
+package com.anggaaryas.flutter_gojek_courier
 
 import io.flutter.plugin.common.EventChannel
 import timber.log.Timber

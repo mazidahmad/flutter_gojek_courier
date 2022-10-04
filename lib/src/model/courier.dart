@@ -1,4 +1,4 @@
-import 'package:gojek_courier/src/model/courier_configuration.dart';
+import 'package:flutter_gojek_courier/src/model/courier_configuration.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'courier.g.dart';

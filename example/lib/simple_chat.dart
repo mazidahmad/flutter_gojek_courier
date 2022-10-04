@@ -3,9 +3,10 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:gojek_courier/flutter_gojek_courier.dart';
-import 'package:gojek_courier/flutter_gojek_courier.dart' as courier;
-import 'package:gojek_courier_example/configuration_section.dart';
+import 'package:flutter_gojek_courier/flutter_gojek_courier.dart';
+import 'package:flutter_gojek_courier/flutter_gojek_courier.dart' as courier;
+import 'package:flutter_gojek_courier/flutter_gojek_courier.dart';
+import 'package:flutter_gojek_courier_example/configuration_section.dart';
 
 class SimpleChatScreen extends StatefulWidget {
   const SimpleChatScreen({Key? key}) : super(key: key);

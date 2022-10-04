@@ -1,7 +1,7 @@
-package com.anggaaryas.gojek_courier.model
+package com.anggaaryas.flutter_gojek_courier.model
 
 import android.content.Context
-import com.anggaaryas.gojek_courier.Listener
+import com.anggaaryas.flutter_gojek_courier.Listener
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 

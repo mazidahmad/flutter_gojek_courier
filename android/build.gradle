@@ -1,4 +1,4 @@
-group 'com.anggaaryas.gojek_courier'
+group 'com.anggaaryas.flutter_gojek_courier'
 version '1.0-SNAPSHOT'
 
 buildscript {

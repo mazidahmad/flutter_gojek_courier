@@ -1,4 +1,4 @@
-package com.anggaaryas.gojek_courier
+package com.anggaaryas.flutter_gojek_courier
 
 import com.gojek.mqtt.event.MqttEvent
 import com.google.gson.ExclusionStrategy

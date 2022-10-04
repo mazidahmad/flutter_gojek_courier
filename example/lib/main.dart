@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gojek_courier_example/simple_chat.dart';
+import 'package:flutter_gojek_courier_example/simple_chat.dart';
 
 void main() {
   runApp(const MyApp());

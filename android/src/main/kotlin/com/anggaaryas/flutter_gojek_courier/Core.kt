@@ -4,8 +4,8 @@ package com.anggaaryas.gojek_courier
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import com.anggaaryas.gojek_courier.model.CourierParam
-import com.anggaaryas.gojek_courier.model.MqttConnectOptionParam
+import com.anggaaryas.flutter_gojek_courier.model.CourierParam
+import com.anggaaryas.flutter_gojek_courier.model.MqttConnectOptionParam
 import com.gojek.courier.Courier
 import com.gojek.courier.QoS
 import com.gojek.courier.streamadapter.rxjava2.RxJava2StreamAdapterFactory

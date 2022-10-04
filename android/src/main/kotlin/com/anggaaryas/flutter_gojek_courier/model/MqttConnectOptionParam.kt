@@ -1,7 +1,7 @@
-package com.anggaaryas.gojek_courier.model
+package com.anggaaryas.flutter_gojek_courier.model
 
 import android.content.Context
-import com.anggaaryas.gojek_courier.Listener
+import com.anggaaryas.flutter_gojek_courier.Listener
 import com.gojek.mqtt.model.KeepAlive
 import com.gojek.mqtt.model.MqttConnectOptions
 import com.gojek.mqtt.model.MqttVersion

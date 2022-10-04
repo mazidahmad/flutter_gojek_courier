@@ -1,4 +1,4 @@
-import 'package:gojek_courier/flutter_gojek_courier.dart';
+import 'package:flutter_gojek_courier/flutter_gojek_courier.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'mqtt_connect_option.g.dart';

@@ -1,8 +1,8 @@
 package com.anggaaryas.gojek_courier.model
 
 import android.content.Context
-import com.anggaaryas.gojek_courier.DefaultConstants
-import com.anggaaryas.gojek_courier.Listener
+import com.anggaaryas.flutter_gojek_courier.DefaultConstants
+import com.anggaaryas.flutter_gojek_courier.Listener
 import com.gojek.chuckmqtt.external.MqttChuckConfig
 import com.gojek.chuckmqtt.external.MqttChuckInterceptor
 import com.gojek.chuckmqtt.external.Period
