@@ -14,7 +14,7 @@ dependencies:
   json_annotation: ^4.5.0
 
 dev_dependencies:
-  flutter_test:
+  flutter_test:g
     sdk: flutter
   flutter_lints: ^1.0.4
   build_runner: ^2.1.11
